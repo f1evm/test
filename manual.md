@@ -1,6 +1,5 @@
 <code><style type="text/css">
 codage {
-	display: block;
 	padding: 2px 4px; 
 	font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace; 
 	font-size: 0.9rem; 
@@ -8,9 +7,8 @@ codage {
 	background-color: #f3f6fa; 
 	border-radius: 0.3rem; 
 word-break: normal; 
-white-space: pre; 
-background: transparent; 
-border: 0;}
+border: solid 1px #dce6f0; 
+}
 </style></code>
 
 # INSTALLATION DE TRAPPETTE  
