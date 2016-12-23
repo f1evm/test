@@ -9,9 +9,7 @@ codage {
 word-break: normal; 
 white-space: pre; 
 background: transparent; 
-border: 0; 
-
-}
+border: 0;}
 </style></code>
 
 # INSTALLATION DE TRAPPETTE  
@@ -24,7 +22,7 @@ __NOTE 2 :__ NE PAS CONNECTER VOTRE CLÉ SDR AVANT D’AVOIR INSTALLÉ RTLSDR ! 
 
 Avant toute chose, pour être sûr de partir sur de bonnes bases, mettez à jour votre système :  
 <pre><codage>
-~$ sudo apt-get update  
+**~$** sudo apt-get update  
 ~$ sudo apt-get upgrade  
 ~$ sudo apt-get autoremove  
 </codage></pre>
