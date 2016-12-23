@@ -1,5 +1,6 @@
 <code><style type="text/css">
 codage {
+	display: block;
 	padding: 2px 4px; 
 	font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace; 
 	font-size: 0.9rem; 
@@ -21,11 +22,11 @@ __NOTE 2 :__ NE PAS CONNECTER VOTRE CLÉ SDR AVANT D’AVOIR INSTALLÉ RTLSDR ! 
 ## 1.	INSTALLATION DES OUTILS NÉCESSAIRES  
 
 Avant toute chose, pour être sûr de partir sur de bonnes bases, mettez à jour votre système :  
-<div>
+<codage>
 <strong>~$</strong> sudo apt-get update  
 __~$__ sudo apt-get upgrade  
 ~$ sudo apt-get autoremove  
-</div>
+</codage>
 	
 Dans votre console, exécutez la commande suivante :  
 <pre><code><span>~$</span> sudo aptget install cmake git libusb-1.0-0-dev
