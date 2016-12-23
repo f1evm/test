@@ -1,11 +1,10 @@
-# INSTALLATION DE TRAPPETTE
-
+# INSTALLATION DE TRAPPETTE  
 
 <small>
 __NOTE 1 :__ LES EXEMPLES SONT DONNÉS POUR LE RASPBERRY PI AVEC CLÉ SDR ET LA SONDE M10  
 __NOTE 2 :__ NE PAS CONNECTER VOTRE CLÉ SDR AVANT D’AVOIR INSTALLÉ RTLSDR !  ( MAIS CE N’EST PAS GRAVE SI C’EST DÉJÀ FAIT )</small>
 
-# 1.	INSTALLATION DES OUTILS NÉCESSAIRES
+## 1.	INSTALLATION DES OUTILS NÉCESSAIRES  
 
 * git ( pour récupérer les sources de rtlsdr)
 * cmake ( pour compiler rtlsdr)
@@ -15,7 +14,7 @@ __NOTE 2 :__ NE PAS CONNECTER VOTRE CLÉ SDR AVANT D’AVOIR INSTALLÉ RTLSDR ! 
 	pi@raspberrypi:~$sudo>pi@raspberrypi:~$sudo aptget install cmake git libusb-1.0-0-dev
 
 
-## 2.	RÉCUPÉRER RTL-SDR
+## 2.	RÉCUPÉRER RTL-SDR  
 
 ( source : [http://sdr.osmocom.org/trac/wiki/rtlsdr](http://sdr.osmocom.org/trac/wiki/rtlsdr) )
 
@@ -41,7 +40,7 @@ Eteignez votre Raspberry Pi
 Connectez votre clé RTL2832U dans un des port USB  
 Rebranchez votre Raspberry Pi et relancer un terminal.  
 
-<h2 id="§4">4.	VÉRIFIER QUE LA CLÉ RTL2832U FONCTIONNE</h2>
+## 4.	VÉRIFIER QUE LA CLÉ RTL2832U FONCTIONNE  
 
 	pi@raspberrypi:~$rtl_test
 
@@ -51,7 +50,7 @@ Ctrl+C pour arrêter rtl_test
 ça ne fonctionne pas?  
 lisez calmement les sources cités ci-dessus pour chercher le soucis.
 
-<h2 is="§5">5.	MESURER LA DÉVIATION PPM DE VOTRE CLÉ RTL2832U</h2>
+## 5.	MESURER LA DÉVIATION PPM DE VOTRE CLÉ RTL2832U  
 
 Lancez **rtl_test** avec l’option -p, et laissez-le tourner 30 min à 1h :
 
@@ -62,14 +61,14 @@ Lancez **rtl_test** avec l’option -p, et laissez-le tourner 30 min à 1h :
 
 Ctrl+C pour arrêter rtl_test  
 La déviation est par exemple ici pour moi de 79 ppm ( à mémoriser )  
-<h2 id="§6">6.	VÉRIFIER QU’ON REÇOIT BIEN QUELQUE CHOSE AVEC LA CLÉ</h2>
+## 6.	VÉRIFIER QU’ON REÇOIT BIEN QUELQUE CHOSE AVEC LA CLÉ  
 
 	pi@raspberrypi:~$rtl_fm -p 79 -f 402M -M fm -s 48k -E dc - | hexdump -Cv
 	 ou 
 	pi@raspberrypi:~$rtl_fm -p 79 -f 402M -M fm -s 48k -E dc - | aplay -r 48k -f S16_LE
 Ctrl+C pour arrêter rtl_fm 
 
-<h2 id="§7">7.	RÉCUPÉRER ET COMPILER LE PROGRAMME “TRAPPETTE” </h2>
+## 7.	RÉCUPÉRER ET COMPILER LE PROGRAMME “TRAPPETTE”  
 
 Si c'est la première fois que vous récupérez les sources :  
 
@@ -84,7 +83,7 @@ Pour mettre à jour une installation existante :
 	pi@raspberrypi:~/trappette$>make clean
 	pi@raspberrypi:~/trappette$>make
 
-<h2 id="§8">8.	FICHIER DE CONFIGURATION</h2>
+## 8.	FICHIER DE CONFIGURATION  
 
 Pour créer le fichier de configuration nous allons commencer par copier l'exemple fourni :  
 
@@ -103,22 +102,23 @@ Avec votre éditeur favori, examinez alors les paramètres et modifiez ceux qui 
 	earth.ellipsoid = 49
 	#header.repeat = 22
 	
-    # GPS output
-    gps.out.port = /dev/ttyUSB0
-    gps.out.baud = 4800
+	# GPS output
+    	gps.out.port = /dev/ttyUSB0
+    	gps.out.baud = 4800
 
-    # Rotor
-    rotor.port = /dev/ttyACM0
-    rotor.baud = 9600
-    rotor.azimuth.init = 246 # Eiffel Tower -> Trappes
-    rotor.elevation.init = 0
+	# Rotor
+	rotor.port = /dev/ttyACM0
+	rotor.baud = 9600
+	rotor.azimuth.init = 246 # Eiffel Tower -> Trappes
+	rotor.elevation.init = 0
 
-    rotor.azimuth.min = 0
-    rotor.azimuth.max = 360
-    rotor.elevation.min = 0
-    rotor.elevation.max = 90
+	rotor.azimuth.min = 0
+	rotor.azimuth.max = 360
+	rotor.elevation.min = 0
+	rotor.elevation.max = 90
  
- <h2 id="anxx">XX. Fichier READ.ME</h2>
+ ## XX. Fichier READ.ME  
+ 
     # M10 Radiosonde Demodulation
 
     # -----------------------------------------------------
