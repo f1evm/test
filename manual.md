@@ -1,8 +1,19 @@
 <code><style type="text/css">
 codage {
-	background-color: #F7F7F7;
-	color: red;
-	font-weight: bold;
+	padding: 0.8rem; 
+	margin-top: 0; 
+	margin-bottom: 1rem; 
+font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace; 
+font-size: 0.9rem; 
+	color: #567482; 
+background-color: #f3f6fa; 
+border: solid 1px #dce6f0; 
+border-radius: 0.3rem; 
+word-wrap: normal; 
+word-break: normal; 
+white-space: pre; 
+
+
 }
 </style></code>
 
