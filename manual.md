@@ -6,35 +6,45 @@ __NOTE 2 :__ NE PAS CONNECTER VOTRE CLÉ SDR AVANT D’AVOIR INSTALLÉ RTLSDR ! 
 
 ## 1.	INSTALLATION DES OUTILS NÉCESSAIRES  
 
+Avant toute chose, pour être sûr de partir sur de bonnes bases, mettez à jour votre système :  
+
+	~$ sudo apt-get update
+	~$ sudo apt-get upgrade
+	~$ sudo apt-get autoremove
+	
+Dans votre console, exécutez la commande suivante :  
+
+	~$ sudo aptget install cmake git libusb-1.0-0-dev
+
+Elle permet de'installer les outils nécessaires :   
+
 * git ( pour récupérer les sources de rtlsdr)
 * cmake ( pour compiler rtlsdr)
 * libusb-1.0-0-dev ( lien entre les programmes de rtlsdr et le hardware )  
 
 
-	pi@raspberrypi:~$sudo>pi@raspberrypi:~$sudo aptget install cmake git libusb-1.0-0-dev
-
-
 ## 2.	RÉCUPÉRER RTL-SDR  
 
-( source : [http://sdr.osmocom.org/trac/wiki/rtlsdr](http://sdr.osmocom.org/trac/wiki/rtlsdr) )
+(source : http://sdr.osmocom.org/trac/wiki/rtlsdr])  
 
 
-<span style="color:green">pi@raspberrypi:~$</span> git clone git://git.osmocom.org/rtl-sdr.git
-	pi@raspberrypi:~$ cd rtl-sdr
-	pi@raspberrypi:~/rtlsdr$ mkdir build
-	pi@raspberrypi:~/rtlsdr$ cd build/
-	pi@raspberrypi:~/rtlsdr/build$ cmake ../ -DINSTALL_UDEV_RULES=ON
-	pi@raspberrypi:~/rtlsdr/build$ make
-	pi@raspberrypi:~/rtlsdr/build$ sudo make install
-	pi@raspberrypi:~/rtlsdr/build$ sudo ldconfig
+	~$ git clone git://git.osmocom.org/rtl-sdr.git
+	~$ cd rtl-sdr
+	~/rtlsdr$ mkdir build
+	~/rtlsdr$ cd build/
+	~/rtlsdr/build$ cmake ../ -DINSTALL_UDEV_RULES=ON
+	~/rtlsdr/build$ make
+	~/rtlsdr/build$ sudo make install
+	~/rtlsdr/build$ sudo ldconfig
+
     
-<h2 id="§3">3.	EMPÊCHER LE KERNEL DE JOUER AVEC LA CLÉ RTL2832U À LA PLACE DE RTLSDR</h2>  
+## 3.	EMPÊCHER LE KERNEL DE JOUER AVEC LA CLÉ RTL2832U À LA PLACE DE RTLSDR  
 
 ( source: https://opendesignengine.net/news/53 )  
 
-	pi@raspberrypi:~$sudo bash (le mot de passe par defaut est "raspberry")  
-    root@raspberrypi:/home/pi#echo "blacklist dvb_usb_rtl28xxu" > /etc/modprobe.d/blacklist.conf  
-    root@raspberrypi:/home/pi#exit
+	~$sudo bash (le mot de passe par defaut est "raspberry")  
+	*root*@raspberrypi:/home/pi#echo "blacklist dvb_usb_rtl28xxu" > /etc/modprobe.d/blacklist.conf  
+	*root*@raspberrypi:/home/pi#exit
 
 Eteignez votre Raspberry Pi  
 Connectez votre clé RTL2832U dans un des port USB  
