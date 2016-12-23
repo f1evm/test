@@ -22,11 +22,11 @@ __NOTE 2 :__ NE PAS CONNECTER VOTRE CLÉ SDR AVANT D’AVOIR INSTALLÉ RTLSDR ! 
 
 Avant toute chose, pour être sûr de partir sur de bonnes bases, mettez à jour votre système :  
 
-<div>
-__~$__ sudo apt-get update  
+<p>
+ __~$__ sudo apt-get update  
 ~$ sudo apt-get upgrade  
 ~$ sudo apt-get autoremove  
-</div>
+</p>
 	
 Dans votre console, exécutez la commande suivante :  
 <pre><code><span>~$</span> sudo aptget install cmake git libusb-1.0-0-dev
