@@ -1,6 +1,7 @@
 <code><style type="text/css">
 pre code span {
 	color: green;
+	font-weight: bold;
 }
 </style>
 </code>
@@ -16,8 +17,8 @@ Avant toute chose, pour être sûr de partir sur de bonnes bases, mettez à jour
 
 <pre><code>
 <span>~$</span> sudo apt-get update  
-~$ sudo apt-get upgrade  
-~$ sudo apt-get autoremove  
+<span>~$</span> sudo apt-get upgrade  
+<span>~$</span> sudo apt-get autoremove  
 </code></pre>
 	
 Dans votre console, exécutez la commande suivante :  
