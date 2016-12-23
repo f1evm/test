@@ -46,18 +46,17 @@ Elle permet de'installer les outils nécessaires :
 ## 3.	EMPÊCHER LE KERNEL DE JOUER AVEC LA CLÉ RTL2832U À LA PLACE DE RTLSDR  
 
 ( source: https://opendesignengine.net/news/53 )  
-
-	~$ sudo bash                        (le mot de passe par defaut est "raspberry")  
-	root@raspberrypi:/home/pi # echo "blacklist dvb_usb_rtl28xxu" > /etc/modprobe.d/blacklist.conf  
-	root@raspberrypi:/home/pi # exit
+<pre><code><span>~$</span> sudo bash                        (le mot de passe par defaut est "raspberry")  
+<span>root@raspberrypi:/home/pi #</span> echo "blacklist dvb_usb_rtl28xxu" > /etc/modprobe.d/blacklist.conf  
+<span>root@raspberrypi:/home/pi #</span> exit
+</code></pre>
 
 Eteignez votre Raspberry Pi  
 Connectez votre clé RTL2832U dans un des port USB  
 Rebranchez votre Raspberry Pi et relancer un terminal.  
 
 ## 4.	VÉRIFIER QUE LA CLÉ RTL2832U FONCTIONNE  
-
-	~$ rtl_test
+<pre><code><span>~$</span> rtl_test</code></pre>
 
 ça fonctionne? Bravo! On a fait le plus dur…  
 Ctrl+C pour arrêter rtl_test  
@@ -68,42 +67,42 @@ lisez calmement les sources cités ci-dessus pour chercher le soucis.
 ## 5.	MESURER LA DÉVIATION PPM DE VOTRE CLÉ RTL2832U  
 
 Lancez **rtl_test** avec l’option -p, et laissez-le tourner **30 min à 1h** :
-
-	~$ rtl_test p
+<pre><code><span>~$</span> rtl_test p
 	[...]
 	real sample rate: 2048140 current PPM: 69 cumulative PPM: 79
 	real sample rate: 2048147 current PPM: 72 cumulative PPM: 79
-
+	</code></pre>
+	
 Ctrl+C pour arrêter rtl_test  
 La déviation est par exemple ici pour moi de 79 ppm ( à mémoriser )  
 
 ## 6.	VÉRIFIER QU’ON REÇOIT BIEN QUELQUE CHOSE AVEC LA CLÉ  
-
-	~$ rtl_fm -p 79 -f 402M -M fm -s 48k -E dc - | hexdump -Cv
+<pre><code><span>~$</span> rtl_fm -p 79 -f 402M -M fm -s 48k -E dc - | hexdump -Cv
 	 ou 
-	~$ rtl_fm -p 79 -f 402M -M fm -s 48k -E dc - | aplay -r 48k -f S16_LE
+<span>~$</span> rtl_fm -p 79 -f 402M -M fm -s 48k -E dc - | aplay -r 48k -f S16_LE
+</code></pre>
 Ctrl+C pour arrêter rtl_fm 
 
 ## 7.	RÉCUPÉRER ET COMPILER LE PROGRAMME “TRAPPETTE”  
 
 Si c'est la première fois que vous récupérez les sources :  
-
-	~$ git clone http://github.com/Quadricopter/trappette.git
-	~$ cd trappette
-	~/trappette $ make
+<pre><code><span>~$</span> git clone http://github.com/Quadricopter/trappette.git
+<span>~$</span> cd trappette
+<span>~/trappette $</span> make
+</code></pre>
 
 Pour mettre à jour une installation existante :  
-
-	~$ cd trappette
-	~/trappette$> git pull
-	~/trappette$> make clean
-	~/trappette$> make
+<pre><code><span>~$</span> cd trappette
+<span>~/trappette$></span> git pull
+<span>~/trappette$></span> make clean
+<span>~/trappette$></span> make
+</code></pre>
 
 ## 8.	FICHIER DE CONFIGURATION  
 
 Pour créer le fichier de configuration nous allons commencer par copier l'exemple fourni :  
-
-	~/trappette $ cp trappette.cfg.sample trappette.cfg
+<pre><code><span>~/trappette $</span> cp trappette.cfg.sample trappette.cfg
+</code></pre>
 
 Avec votre éditeur favori, examinez alors les paramètres et modifiez ceux qui doivent l'être (notamment vos coordonnées et les diverses options).  
 
@@ -140,24 +139,23 @@ Avec votre éditeur favori, examinez alors les paramètres et modifiez ceux qui 
     # -----------------------------------------------------
     # Retrieve sources and build "trappette" ( first time )
     # -----------------------------------------------------
-
-    ~ $ git clone http://88.127.147.114:8019/git/trappette.git
-    ~ $ cd trappette
-    ~/trappette $ make
-
+<pre><code><span>~ $</span> git clone http://88.127.147.114:8019/git/trappette.git
+<span>~ $</span> cd trappette
+<span>~/trappette $</span> make
+</code></pre>
     # -----
     # Usage
     # -----
 
     # Decode from soundcard ( alsa )
-    ~/trappette $ arecord -f S16_LE -c 1 -r 48k -t raw | ./trappette
-
+<pre><code><span>~/trappette $</span> arecord -f S16_LE -c 1 -r 48k -t raw | ./trappette
+</code></pre>
     # Decode from gqrx server
-    ~/trappette $ nc -l -u 7355 | ./trappette
-
+<pre><code><span>~/trappette $</span> nc -l -u 7355 | ./trappette
+</code></pre>
     # Decode from WAVE file (48kHz only!)
-    ~/trappette $ ./trappette -w file.wav
-
+<pre><code><span>~/trappette $</span> ./trappette -w file.wav
+</code></pre>
 
     # ------------------------
     # Decode from SDR RTL2832U
