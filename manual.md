@@ -3,8 +3,8 @@ pre code span {
 	color: black;
 	font-weight: bold;
 }
-</style>
-</code>
+</style></code>
+
 # INSTALLATION DE TRAPPETTE  
 
 <small>
@@ -33,17 +33,15 @@ Elle permet de'installer les outils nécessaires :
 ## 2.	RÉCUPÉRER RTL-SDR  
 
 (source : http://sdr.osmocom.org/trac/wiki/rtlsdr])  
-
-
-	~$ git clone git://git.osmocom.org/rtl-sdr.git
-	~$ cd rtl-sdr
-	~/rtlsdr $ mkdir build
-	~/rtlsdr $ cd build/
-	~/rtlsdr/build $ cmake ../ -DINSTALL_UDEV_RULES=ON
-	~/rtlsdr/build $ make
-	~/rtlsdr/build $ sudo make install
-	~/rtlsdr/build $ sudo ldconfig
-
+<pre><code><span>~$</span> git clone git://git.osmocom.org/rtl-sdr.git
+<span>~$</span> cd rtl-sdr
+<span>~/rtlsdr $</span> mkdir build
+<span>~/rtlsdr $</span> cd build/
+<span>~/rtlsdr/build $</span> cmake ../ -DINSTALL_UDEV_RULES=ON
+<span>~/rtlsdr/build $</span> make
+<span>~/rtlsdr/build $</span> sudo make install
+<span>~/rtlsdr/build $</span> sudo ldconfig
+</code></pre>
     
 ## 3.	EMPÊCHER LE KERNEL DE JOUER AVEC LA CLÉ RTL2832U À LA PLACE DE RTLSDR  
 
