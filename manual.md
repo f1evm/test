@@ -1,18 +1,15 @@
 <code><style type="text/css">
 codage {
-	padding: 0.8rem; 
-	margin-top: 0; 
-	margin-bottom: 1rem; 
-font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace; 
-font-size: 0.9rem; 
+	padding: 2px 4px; 
+	font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace; 
+	font-size: 0.9rem; 
 	color: #567482; 
-background-color: #f3f6fa; 
-border: solid 1px #dce6f0; 
-border-radius: 0.3rem; 
-word-wrap: normal; 
+	background-color: #f3f6fa; 
+	border-radius: 0.3rem; 
 word-break: normal; 
 white-space: pre; 
-
+background: transparent; 
+border: 0; 
 
 }
 </style></code>
