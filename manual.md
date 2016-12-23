@@ -1,3 +1,9 @@
+<style type="text/css">
+pre code span {
+	color: green;
+}
+</style>
+
 # INSTALLATION DE TRAPPETTE  
 
 <small>
