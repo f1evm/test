@@ -1,6 +1,7 @@
 <code><style type="text/css">
-pre code span {
-	color: black;
+codage {
+	background-color: #F7F7F7;
+	color: red;
 	font-weight: bold;
 }
 </style></code>
@@ -14,10 +15,11 @@ __NOTE 2 :__ NE PAS CONNECTER VOTRE CLÉ SDR AVANT D’AVOIR INSTALLÉ RTLSDR ! 
 ## 1.	INSTALLATION DES OUTILS NÉCESSAIRES  
 
 Avant toute chose, pour être sûr de partir sur de bonnes bases, mettez à jour votre système :  
-<pre><code><span>~$</span> sudo apt-get update  
-<span>~$</span> sudo apt-get upgrade  
-<span>~$</span> sudo apt-get autoremove  
-</code></pre>
+<codage>
+~$ sudo apt-get update  
+~$ sudo apt-get upgrade  
+~$ sudo apt-get autoremove  
+</codage>
 	
 Dans votre console, exécutez la commande suivante :  
 <pre><code><span>~$</span> sudo aptget install cmake git libusb-1.0-0-dev
