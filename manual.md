@@ -8,8 +8,8 @@ __NOTE 2 :__ NE PAS CONNECTER VOTRE CLÉ SDR AVANT D’AVOIR INSTALLÉ RTLSDR ! 
 
 Avant toute chose, pour être sûr de partir sur de bonnes bases, mettez à jour votre système :  
 
-```javascript
-require ~$ sudo apt-get update  
+```
+~$ sudo apt-get update  
 ~$ sudo apt-get upgrade  
 ~$ sudo apt-get autoremove  
 ```
@@ -32,21 +32,21 @@ Elle permet de'installer les outils nécessaires :
 
 	~$ git clone git://git.osmocom.org/rtl-sdr.git
 	~$ cd rtl-sdr
-	~/rtlsdr$ mkdir build
-	~/rtlsdr$ cd build/
-	~/rtlsdr/build$ cmake ../ -DINSTALL_UDEV_RULES=ON
-	~/rtlsdr/build$ make
-	~/rtlsdr/build$ sudo make install
-	~/rtlsdr/build$ sudo ldconfig
+	~/rtlsdr $ mkdir build
+	~/rtlsdr $ cd build/
+	~/rtlsdr/build $ cmake ../ -DINSTALL_UDEV_RULES=ON
+	~/rtlsdr/build $ make
+	~/rtlsdr/build $ sudo make install
+	~/rtlsdr/build $ sudo ldconfig
 
     
 ## 3.	EMPÊCHER LE KERNEL DE JOUER AVEC LA CLÉ RTL2832U À LA PLACE DE RTLSDR  
 
 ( source: https://opendesignengine.net/news/53 )  
 
-	~$sudo bash (le mot de passe par defaut est "raspberry")  
-	*root*@raspberrypi:/home/pi#echo "blacklist dvb_usb_rtl28xxu" > /etc/modprobe.d/blacklist.conf  
-	*root*@raspberrypi:/home/pi#exit
+	~$ sudo bash                        (le mot de passe par defaut est "raspberry")  
+	root@raspberrypi:/home/pi # echo "blacklist dvb_usb_rtl28xxu" > /etc/modprobe.d/blacklist.conf  
+	root@raspberrypi:/home/pi # exit
 
 Eteignez votre Raspberry Pi  
 Connectez votre clé RTL2832U dans un des port USB  
@@ -54,7 +54,7 @@ Rebranchez votre Raspberry Pi et relancer un terminal.
 
 ## 4.	VÉRIFIER QUE LA CLÉ RTL2832U FONCTIONNE  
 
-	pi@raspberrypi:~$rtl_test
+	~$ rtl_test
 
 ça fonctionne? Bravo! On a fait le plus dur…  
 Ctrl+C pour arrêter rtl_test  
@@ -64,42 +64,43 @@ lisez calmement les sources cités ci-dessus pour chercher le soucis.
 
 ## 5.	MESURER LA DÉVIATION PPM DE VOTRE CLÉ RTL2832U  
 
-Lancez **rtl_test** avec l’option -p, et laissez-le tourner 30 min à 1h :
+Lancez **rtl_test** avec l’option -p, et laissez-le tourner **30 min à 1h** :
 
-	pi@raspberrypi:~$rtl_test p
+	~$ rtl_test p
 	[...]
 	real sample rate: 2048140 current PPM: 69 cumulative PPM: 79
 	real sample rate: 2048147 current PPM: 72 cumulative PPM: 79
 
 Ctrl+C pour arrêter rtl_test  
 La déviation est par exemple ici pour moi de 79 ppm ( à mémoriser )  
+
 ## 6.	VÉRIFIER QU’ON REÇOIT BIEN QUELQUE CHOSE AVEC LA CLÉ  
 
-	pi@raspberrypi:~$rtl_fm -p 79 -f 402M -M fm -s 48k -E dc - | hexdump -Cv
+	~$ rtl_fm -p 79 -f 402M -M fm -s 48k -E dc - | hexdump -Cv
 	 ou 
-	pi@raspberrypi:~$rtl_fm -p 79 -f 402M -M fm -s 48k -E dc - | aplay -r 48k -f S16_LE
+	~$ rtl_fm -p 79 -f 402M -M fm -s 48k -E dc - | aplay -r 48k -f S16_LE
 Ctrl+C pour arrêter rtl_fm 
 
 ## 7.	RÉCUPÉRER ET COMPILER LE PROGRAMME “TRAPPETTE”  
 
 Si c'est la première fois que vous récupérez les sources :  
 
-	pi@raspberrypi:~$git clone http://github.com/Quadricopter/trappette.git
-	pi@raspberrypi:~$cd trappette
-	pi@raspberrypi:~/trappette$>make
+	~$ git clone http://github.com/Quadricopter/trappette.git
+	~$ cd trappette
+	~/trappette $ make
 
 Pour mettre à jour une installation existante :  
 
-	pi@raspberrypi:~$cd trappette
-	pi@raspberrypi:~/trappette$>git pull
-	pi@raspberrypi:~/trappette$>make clean
-	pi@raspberrypi:~/trappette$>make
+	~$ cd trappette
+	~/trappette$> git pull
+	~/trappette$> make clean
+	~/trappette$> make
 
 ## 8.	FICHIER DE CONFIGURATION  
 
 Pour créer le fichier de configuration nous allons commencer par copier l'exemple fourni :  
 
-	~/trappette$cp trappette.cfg.sample trappette.cfg
+	~/trappette $ cp trappette.cfg.sample trappette.cfg
 
 Avec votre éditeur favori, examinez alors les paramètres et modifiez ceux qui doivent l'être (notamment vos coordonnées et les diverses options).  
 
