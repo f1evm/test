@@ -23,7 +23,7 @@ __NOTE 2 :__ NE PAS CONNECTER VOTRE CLÉ SDR AVANT D’AVOIR INSTALLÉ RTLSDR ! 
 
 Avant toute chose, pour être sûr de partir sur de bonnes bases, mettez à jour votre système :  
 <codage>
-<strong>~$</strong> sudo apt-get update  
+<strong>~$</strong> sudo apt-get update  <br>
 __~$__ sudo apt-get upgrade  
 ~$ sudo apt-get autoremove  
 </codage>
