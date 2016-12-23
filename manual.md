@@ -1,5 +1,5 @@
 <code><style type="text/css">
-pre code span {
+pre code > span {
 	color: green;
 	font-weight: bold;
 }
