@@ -113,8 +113,8 @@ Avec votre éditeur favori, examinez alors les paramètres et modifiez ceux qui 
 	#header.repeat = 22
 	
 	# GPS output
-    	gps.out.port = /dev/ttyUSB0
-    	gps.out.baud = 4800
+	gps.out.port = /dev/ttyUSB0
+	gps.out.baud = 4800
 
 	# Rotor
 	rotor.port = /dev/ttyACM0
