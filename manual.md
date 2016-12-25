@@ -7,11 +7,13 @@ __NOTE 2 :__ NE PAS CONNECTER VOTRE CLÉ SDR AVANT D’AVOIR INSTALLÉ RTLSDR ! 
 ## 1.	INSTALLATION DES OUTILS NÉCESSAIRES  
 
 Avant toute chose, pour être sûr de partir sur de bonnes bases, mettez à jour votre système :  
+
 	sudo apt-get update  <br>
 	sudo apt-get upgrade  
 	sudo apt-get autoremove  
 	
 Dans votre console, exécutez la commande suivante :  
+
 	sudo aptget install cmake git libusb-1.0-0-dev
 
 Elle permet de'installer les outils nécessaires :   
@@ -24,6 +26,7 @@ Elle permet de'installer les outils nécessaires :
 ## 2.	RÉCUPÉRER RTL-SDR  
 
 (source : http://sdr.osmocom.org/trac/wiki/rtlsdr])  
+
 	git clone git://git.osmocom.org/rtl-sdr.git
 	cd rtl-sdr
 	mkdir build
@@ -36,6 +39,7 @@ Elle permet de'installer les outils nécessaires :
 ## 3.	EMPÊCHER LE KERNEL DE JOUER AVEC LA CLÉ RTL2832U À LA PLACE DE RTLSDR  
 
 ( source: https://opendesignengine.net/news/53 )  
+
 	sudo bash                        (le mot de passe par defaut est "raspberry")  
 	echo "blacklist dvb_usb_rtl28xxu" > /etc/modprobe.d/blacklist.conf  
 	exit
