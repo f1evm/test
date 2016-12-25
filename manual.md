@@ -1,16 +1,3 @@
-<code><style type="text/css">
-codage {
-	padding: 2px 4px; 
-	font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace; 
-	font-size: 0.9rem; 
-	color: #567482; 
-	background-color: #f3f6fa; 
-	border-radius: 0.3rem; 
-word-break: normal; 
-border: solid 1px #dce6f0; 
-}
-</style></code>
-
 # INSTALLATION DE TRAPPETTE  
 
 <small>
@@ -20,15 +7,12 @@ __NOTE 2 :__ NE PAS CONNECTER VOTRE CLÉ SDR AVANT D’AVOIR INSTALLÉ RTLSDR ! 
 ## 1.	INSTALLATION DES OUTILS NÉCESSAIRES  
 
 Avant toute chose, pour être sûr de partir sur de bonnes bases, mettez à jour votre système :  
-<codage>
-<strong>~$</strong> sudo apt-get update  <br>
-__~$__ sudo apt-get upgrade  
-~$ sudo apt-get autoremove  
-</codage>
+	sudo apt-get update  <br>
+	sudo apt-get upgrade  
+	sudo apt-get autoremove  
 	
 Dans votre console, exécutez la commande suivante :  
-<pre><code><span>~$</span> sudo aptget install cmake git libusb-1.0-0-dev
-</code></pre>
+	sudo aptget install cmake git libusb-1.0-0-dev
 
 Elle permet de'installer les outils nécessaires :   
 
@@ -40,30 +24,28 @@ Elle permet de'installer les outils nécessaires :
 ## 2.	RÉCUPÉRER RTL-SDR  
 
 (source : http://sdr.osmocom.org/trac/wiki/rtlsdr])  
-<pre><code><span>~$</span> git clone git://git.osmocom.org/rtl-sdr.git
-<span>~$</span> cd rtl-sdr
-<span>~/rtlsdr $</span> mkdir build
-<span>~/rtlsdr $</span> cd build/
-<span>~/rtlsdr/build $</span> cmake ../ -DINSTALL_UDEV_RULES=ON
-<span>~/rtlsdr/build $</span> make
-<span>~/rtlsdr/build $</span> sudo make install
-<span>~/rtlsdr/build $</span> sudo ldconfig
-</code></pre>
+	git clone git://git.osmocom.org/rtl-sdr.git
+	cd rtl-sdr
+	mkdir build
+	cd build/
+	cmake ../ -DINSTALL_UDEV_RULES=ON
+	make
+	sudo make install
+	sudo ldconfig
     
 ## 3.	EMPÊCHER LE KERNEL DE JOUER AVEC LA CLÉ RTL2832U À LA PLACE DE RTLSDR  
 
 ( source: https://opendesignengine.net/news/53 )  
-<pre><code><span>~$</span> sudo bash                        (le mot de passe par defaut est "raspberry")  
-<span>root@raspberrypi:/home/pi #</span> echo "blacklist dvb_usb_rtl28xxu" > /etc/modprobe.d/blacklist.conf  
-<span>root@raspberrypi:/home/pi #</span> exit
-</code></pre>
+	sudo bash                        (le mot de passe par defaut est "raspberry")  
+	echo "blacklist dvb_usb_rtl28xxu" > /etc/modprobe.d/blacklist.conf  
+	exit
 
 Eteignez votre Raspberry Pi  
 Connectez votre clé RTL2832U dans un des port USB  
 Rebranchez votre Raspberry Pi et relancer un terminal.  
 
 ## 4.	VÉRIFIER QUE LA CLÉ RTL2832U FONCTIONNE  
-<pre><code><span>~$</span> rtl_test</code></pre>
+	rtl_test
 
 ça fonctionne? Bravo! On a fait le plus dur…  
 Ctrl+C pour arrêter rtl_test  
@@ -73,43 +55,44 @@ lisez calmement les sources cités ci-dessus pour chercher le soucis.
 
 ## 5.	MESURER LA DÉVIATION PPM DE VOTRE CLÉ RTL2832U  
 
-Lancez **rtl_test** avec l’option -p, et laissez-le tourner **30 min à 1h** :
-<pre><code><span>~$</span> rtl_test p
+Lancez **rtl_test** avec l’option -p, et laissez-le tourner **30 min à 1h** :  
+
+	rtl_test -p
 	[...]
 	real sample rate: 2048140 current PPM: 69 cumulative PPM: 79
 	real sample rate: 2048147 current PPM: 72 cumulative PPM: 79
-	</code></pre>
+
 	
 Ctrl+C pour arrêter rtl_test  
 La déviation est par exemple ici pour moi de 79 ppm ( à mémoriser )  
 
 ## 6.	VÉRIFIER QU’ON REÇOIT BIEN QUELQUE CHOSE AVEC LA CLÉ  
-<pre><code><span>~$</span> rtl_fm -p 79 -f 402M -M fm -s 48k -E dc - | hexdump -Cv
+	rtl_fm -p 79 -f 402M -M fm -s 48k -E dc - | hexdump -Cv
 	 ou 
-<span>~$</span> rtl_fm -p 79 -f 402M -M fm -s 48k -E dc - | aplay -r 48k -f S16_LE
-</code></pre>
+	rtl_fm -p 79 -f 402M -M fm -s 48k -E dc - | aplay -r 48k -f S16_LE
+
 Ctrl+C pour arrêter rtl_fm 
 
 ## 7.	RÉCUPÉRER ET COMPILER LE PROGRAMME “TRAPPETTE”  
 
 Si c'est la première fois que vous récupérez les sources :  
-<pre><code><span>~$</span> git clone http://github.com/Quadricopter/trappette.git
-<span>~$</span> cd trappette
-<span>~/trappette $</span> make
-</code></pre>
+
+	git clone http://github.com/Quadricopter/trappette.git
+	cd trappette
+	make
 
 Pour mettre à jour une installation existante :  
-<pre><code><span>~$</span> cd trappette
-<span>~/trappette$></span> git pull
-<span>~/trappette$></span> make clean
-<span>~/trappette$></span> make
-</code></pre>
+
+	cd trappette
+	git pull
+	make clean
+	make
 
 ## 8.	FICHIER DE CONFIGURATION  
 
-Pour créer le fichier de configuration nous allons commencer par copier l'exemple fourni :  
-<pre><code><span>~/trappette $</span> cp trappette.cfg.sample trappette.cfg
-</code></pre>
+Pour créer le fichier de configuration nous allons commencer par copier l'exemple fourni : 
+
+	cp trappette.cfg.sample trappette.cfg
 
 Avec votre éditeur favori, examinez alors les paramètres et modifiez ceux qui doivent l'être (notamment vos coordonnées et les diverses options).  
 
@@ -139,89 +122,3 @@ Avec votre éditeur favori, examinez alors les paramètres et modifiez ceux qui 
 	rotor.elevation.min = 0
 	rotor.elevation.max = 90
  
- ## XX. Fichier READ.ME  
- 
-    # M10 Radiosonde Demodulation
-
-    # -----------------------------------------------------
-    # Retrieve sources and build "trappette" ( first time )
-    # -----------------------------------------------------
-<pre><code><span>~ $</span> git clone http://88.127.147.114:8019/git/trappette.git
-<span>~ $</span> cd trappette
-<span>~/trappette $</span> make
-</code></pre>
-    # -----
-    # Usage
-    # -----
-
-    # Decode from soundcard ( alsa )
-<pre><code><span>~/trappette $</span> arecord -f S16_LE -c 1 -r 48k -t raw | ./trappette
-</code></pre>
-    # Decode from gqrx server
-<pre><code><span>~/trappette $</span> nc -l -u 7355 | ./trappette
-</code></pre>
-    # Decode from WAVE file (48kHz only!)
-<pre><code><span>~/trappette $</span> ./trappette -w file.wav
-</code></pre>
-
-    # ------------------------
-    # Decode from SDR RTL2832U
-    # ------------------------
-
-    # Prerequest tools
-    ~ $ sudo apt-get install cmake git libusb-1.0-0-dev
-
-    # rtl-sdr ( http://sdr.osmocom.org/trac/wiki/rtl-sdr )
-    ~ $ git clone git://git.osmocom.org/rtl-sdr.git
-    ~ $ cd rtl-sdr
-    ~/rtl-sdr $ mkdir build
-    ~/rtl-sdr $ cd build/
-    ~/rtl-sdr/build $ cmake ../ -DINSTALL_UDEV_RULES=ON
-    ~/rtl-sdr/build $ make
-    ~/rtl-sdr/build $ sudo make install
-    ~/rtl-sdr/build $ sudo ldconfig
-
-    # rtl-sdr driver management ( https://opendesignengine.net/news/53 )
-    ~ $ sudo bash ( Raspbian default password: "raspberry" )
-    /home/pi# echo "blacklist dvb_usb_rtl28xxu" > /etc/modprobe.d/blacklist.conf
-    /home/pi# exit
-
-    # measure PPM derivation
-    ~ $ rtl_test -p
-    [...]
-    real sample rate: 2048140 current PPM: 69 cumulative PPM: 79
-    real sample rate: 2048147 current PPM: 72 cumulative PPM: 79
-
-    # Decode from rtl_fm
-    ~/trappette $ rtl_fm -p 75 -f 402M -M fm -s 48k -E dc - | ./trappette
-
-
-    # ------------------------------------------------
-    # Retrieve updated sources and rebuild "trappette"
-    # ------------------------------------------------
-
-    ~ $ cd trappette
-    ~/trappette $ git pull
-    ~/trappette $ make
-
-
-    # -------------------------
-    # Some interesting commands
-    # -------------------------
-
-    # Read SoundCard and pipe RAW stream
-    ~ $ arecord -f S16_LE -c 1 -r 48k -t raw | aplay -r 48k -f S16_LE
-    ~ $ arecord -f S16_LE -c 1 -r 48k -t raw | baudline -stdin -channels 1 -format le16
-    ~ $ arecord -f S16_LE -c 1 -r 48k -t raw > output.raw
-
-    # Convert RAW file to WAV file
-    ~ $ sox -b 16 -e signed-integer -c 1 -r 48k -t raw infile.raw outfile.wav
-
-    # Convert WAV file to 48k WAV file
-    ~ $ sox infile.wav -r 48k -b 16 -e signed-integer -c 1 outfile.wav
-
-    # Pipe wav file to trappette
-    ~/trappette $ sox infile.wav -b 16 -e signed-integer -c 1 -r 48k -t raw - | ./trappette
-
-    # Read RAW stream from rtl_fm
-    ~/trappette $ rtl_fm -p 75 -f 402M -M fm -s 48k -E dc - | aplay -r 48k -f S16_LE
