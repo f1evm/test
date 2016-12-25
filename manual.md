@@ -1,8 +1,9 @@
 # INSTALLATION DE TRAPPETTE  
 
 <small>
-__NOTE 1 :__ LES EXEMPLES SONT DONNÉS POUR LE RASPBERRY PI AVEC CLÉ SDR ET LA SONDE M10  
-__NOTE 2 :__ NE PAS CONNECTER VOTRE CLÉ SDR AVANT D’AVOIR INSTALLÉ RTLSDR !  ( MAIS CE N’EST PAS GRAVE SI C’EST DÉJÀ FAIT )</small>
+__NOTE 1 :__ Les exemples sont donnés pour le Raspberry Pi avec clé SDR et la sonde M10.  
+__NOTE 2 :__ Ne pas connecter votre clé SDR avant d'avoir installé rtl-sdr  ! 
+</small>
 
 ## 1.	INSTALLATION DES OUTILS NÉCESSAIRES  
 
