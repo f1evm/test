@@ -37,10 +37,3 @@ Your Pages site will use the layout and styles from the Jekyll theme you have se
 <span>Having trouble with Pages?</span> Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
 
 
-  `test`   fdgdfg  
-  ```Shell   
-  
-  re-test
-  ```  
-  
-  
